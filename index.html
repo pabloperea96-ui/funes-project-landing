@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funes Project — Lee de verdad</title>
+  <meta name="description" content="Aprópiate de lo que lees. Conviértelo en conocimiento que puedes usar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <p class="nav__brand">The Funes Project</p>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__content fade-in">
+      <div class="hero__main">
+        <h1 class="hero__headline">Salva del olvido las ideas que lees</h1>
+        <p class="hero__body">Guarda, conecta y recupera las ideas que has leído y te fascinan. Lee con propósito y convierte tus lecturas en conocimiento útil.</p>
+        <a href="#form" class="btn btn--hero">Quiero leer de verdad</a>
+      </div>
+    </div>
+    <div class="hero__image">
+      <img src="https://www.figma.com/api/mcp/asset/aadb97db-96de-4d30-a0ba-be383e29cb4d" alt="Lector con periódico" draggable="false">
+    </div>
+    <p class="hero__microcopy">The Funes Project está en construcción.<br class="mobile-break"> Ayúdanos a darle forma.</p>
+  </section>
+
+  <!-- ─── EL PROBLEMA ──────────────────────────────────────────── -->
+  <section class="problema">
+
+    <div class="problema__banner">
+      <img src="estatua-problema.png" alt="" class="problema__statue" aria-hidden="true">
+    </div>
+
+    <div class="problema__body">
+      <h2 class="problema__headline fade-in">Todos queremos leer más y retener mejor. Pero...</h2>
+
+      <div class="problema__cards">
+        <div class="problema__card fade-in">
+          <h3 class="problema__card-title">El registro es infinito</h3>
+          <p class="problema__card-text">Encuentras la frase más impactante de tu vida, la subrayas, la marcas, la anotas y la olvidas junto con otras 847.</p>
+        </div>
+        <div class="problema__card fade-in">
+          <h3 class="problema__card-title">Recuperar es imposible</h3>
+          <p class="problema__card-text">Quieres una cita que anotaste alguna vez. Pero se refundió en tu reading list, tu notion, una libreta o un chat contigo de WhatsApp.</p>
+        </div>
+        <div class="problema__card fade-in">
+          <h3 class="problema__card-title">Conectar es difícil</h3>
+          <p class="problema__card-text">La idea que lees se relaciona con otra que guardaste. Pero no encuentras el libro, ni la página: el vínculo se pierde.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─── QUOTE BREAK ─────────────────────────────────────────── -->
+  <section class="quote-break">
+    <blockquote class="quote-break__text slide-in">
+      Leer tiene que ser más que subrayar, anotar al margen, doblar páginas, regar un poco de café, tomar apuntes y <em class="quote-break__highlight">olvidar</em>.
+    </blockquote>
+    <img src="quotebreak-section.png" alt="" class="quote-break__bg">
+
+  </section>
+
+  <!-- ─── LA IDEA ───────────────────────────────────────────────── -->
+  <section class="idea">
+    <div class="container">
+
+      <span class="idea__label">La idea</span>
+      <h2 class="idea__display slide-in">Salva a tus ideas de caer en un agujero negro de apuntes.</h2>
+
+      <div class="idea__pillars">
+
+        <div class="idea__pillar fade-in">
+          <span class="idea__num">01</span>
+          <p class="idea__tagline">Lee con propósito</p>
+          <p class="idea__desc">Cada idea que capturas tiene un contexto. No solo la frase: el porqué que la hace tuya.</p>
+        </div>
+
+        <div class="idea__pillar fade-in">
+          <span class="idea__num">02</span>
+          <p class="idea__tagline">Construye un cuerpo de conocimiento vivo</p>
+          <p class="idea__desc">Tus lecturas no son silos. Se conectan, se complementan y crecen contigo.</p>
+        </div>
+
+        <div class="idea__pillar fade-in">
+          <span class="idea__num">03</span>
+          <p class="idea__tagline">Vuelve a tus ideas, están aquí.</p>
+          <p class="idea__desc">Cuando las necesites, las encuentras. Sin buscar en cinco lugares a la vez.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CIERRE ────────────────────────────────────────────────── -->
+  <section class="cierre">
+    <div class="container">
+
+      <div class="cierre__questions">
+        <p class="cierre__q fade-in">¿Leíste "el mejor libro de tu vida" y no recuerdas las ideas más importantes?</p>
+        <p class="cierre__q fade-in">¿Recomendaste un libro y cuando te preguntaron por qué no tenías ni @#!$% de cómo responder?</p>
+        <p class="cierre__q fade-in">¿Tienes libretas de apuntes olvidadas en algún cajón del escritorio que nunca volviste a abrir?</p>
+      </div>
+
+      <div class="cierre__copy fade-in">
+        <p class="cierre__subheadline">Si esto te es familiar, tu experiencia nos ayudará a construir la nuestra.</p>
+        <p class="cierre__microcopy">Queremos tu conocimiento para construir algo cool que perfectamente podrías hacer tú, pero lo estamos haciendo.</p>
+      </div>
+
+      <div class="form-wrap fade-in" id="form">
+        <h3 class="form__cta">Déjanos tu WhatsApp</h3>
+        <form id="waitlist-form" novalidate>
+          <label class="form__label" for="whatsapp">Déjanos hablar contigo para escarbar tu mente</label>
+          <input
+            type="tel"
+            id="whatsapp"
+            name="whatsapp"
+            class="form__input"
+            placeholder="+57 300 000 0000"
+            autocomplete="tel"
+            required
+          >
+          <p class="form__hint">Te retribuiremos con una solución a tus lecturas vacías.</p>
+          <button type="submit" class="btn btn--full">Quiero participar</button>
+          <p class="form__feedback" id="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <p class="cierre__closing fade-in">Hecho en Colombia por alguien con <span id="counter847">847</span> pendientes.</p>
+
+    </div>
+  </section>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
