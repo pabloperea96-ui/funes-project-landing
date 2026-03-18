@@ -61,9 +61,8 @@ Evitar expresiones que no viajen a México o España.
 ```
 
 **Tipografía:**
-- Display / headlines: `Playfair Display` — serif con personalidad editorial, peso black o bold
-- Body / UI: `DM Sans` — sans-serif limpia, legible, moderna sin ser genérica
-- Fallback stack: `Georgia, serif` para display; `system-ui, sans-serif` para body
+- Display / headlines y body / UI: `Inter` — sans-serif limpia, versátil, con buen peso tipográfico
+- Fallback stack: `system-ui, sans-serif`
 
 **Escala tipográfica:**
 ```
@@ -201,20 +200,18 @@ La página tiene **4 secciones**. Sin navegación superior. Sin footer elaborado
 
 ## Formulario
 
-**Campo único.** Solo WhatsApp. Sin nombre, sin email, sin checkbox de términos en la primera interacción.
+El formulario recolecta los siguientes campos:
 
-**Label / intro (encima del campo):**
-> Déjanos hablar contigo para escarbar tu mente
+| Campo | Tipo | Requerido |
+|---|---|---|
+| Nombre | text | sí |
+| Apellido | text | sí |
+| WhatsApp | tel (selector de país + número) | sí |
+| Email | email | sí |
+| ¿Cuántos libros lees al año? | text | no |
+| Consentimiento de uso de datos | checkbox | sí |
 
-**Campo:**
-```
-Placeholder:  +57 300 000 0000
-```
-
-*Nota: si la audiencia inicial va más allá de Colombia, cambiar placeholder a "Tu número con código de país".*
-
-**Microcopy bajo el campo:**
-> Te retribuiremos con una solución a tus lecturas vacías.
+El selector de país muestra la bandera + nombre + código cuando está abierto, y solo bandera + código cuando está cerrado. Incluye todos los países del mundo, con América Latina y España como grupo prioritario.
 
 **CTA button:**
 > `Quiero participar`
@@ -247,9 +244,9 @@ o
 Next.js + Tailwind         → si se quiere reutilizar componentes en el MVP futuro
 ```
 
-**Para capturar WhatsApps:**
-- **Supabase** — tabla `waitlist` con campos `whatsapp` + `source` + `created_at`
-- Recomendado: Supabase desde el inicio — consistencia con el stack del MVP
+**Para capturar datos:**
+- **Supabase** — tabla `waitlist` con los campos del formulario
+- Credenciales via variables de entorno (`.env`) — ver `README-landing.md`
 
 ---
 
@@ -257,35 +254,16 @@ Next.js + Tailwind         → si se quiere reutilizar componentes en el MVP fut
 
 ```sql
 create table waitlist (
-  id          uuid default gen_random_uuid() primary key,
-  whatsapp    text not null unique,
-  source      text default 'landing',   -- trackear origen: bookclub, direct, etc.
-  created_at  timestamp with time zone default now()
+  id            uuid default gen_random_uuid() primary key,
+  nombre        text not null,
+  apellido      text not null,
+  whatsapp      text not null unique,
+  email         text not null unique,
+  libros_al_año text,
+  consentimiento boolean not null default false,
+  source        text default 'landing',
+  created_at    timestamp with time zone default now()
 );
-```
-
----
-
-## Prompt de referencia para Claude Code en Cursor
-
-Pegar esto al inicio de la sesión en Cursor:
-
-```
-Estoy construyendo la landing page de Funes Project, un producto para lectores frecuentes en LATAM.
-
-Objetivo: capturar el WhatsApp de lectores interesados en ser entrevistados y probar el MVP.
-
-Dirección visual: minimalismo editorial inspirado en portadas de Alianza Editorial.
-Tipografía dominante (Playfair Display para display, DM Sans para body).
-Fondo crema (#F5F2ED), texto negro (#1A1A18). Sin decoración superflua.
-
-Estructura: 4 secciones — Hero, El Problema, La Idea, Cierre.
-Un solo CTA: dejar el WhatsApp. Un solo campo en el formulario.
-
-El copy está definido en LANDING.md. Úsalo textualmente — no lo reescribas ni lo mejores.
-El formulario conecta a Supabase, tabla `waitlist`, campo `whatsapp`.
-
-Empieza por el componente Hero. Mobile-first. Sin librerías de animación pesadas.
 ```
 
 ---

@@ -1,0 +1,133 @@
+/* ── El Problema ────────────────────────────────────────────────────────────── */
+.problema {
+  background-color: var(--color-text);
+  padding: 4rem var(--container-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.problema__banner {
+  position: relative;
+  background-color: #d1620f;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.problema__statue {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 95%;
+  width: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.problema__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.problema__headline {
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-bg);
+  text-wrap: balance;
+}
+
+.problema__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.problema__card {}
+
+.problema__card-title {
+  font-size: clamp(1.125rem, 1.85vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-bg);
+  margin-bottom: 0.625rem;
+}
+
+.problema__card-text {
+  font-size: clamp(0.9375rem, 1.39vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(245, 242, 237, 0.65);
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .problema__banner {
+    height: 360px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  .problema {
+    min-height: 100svh;
+    min-height: 100vh;
+    padding: 8rem 3rem;
+    gap: 3rem;
+  }
+
+  .problema__banner {
+    height: 540px;
+  }
+
+  .problema__body {
+    display: grid;
+    grid-template-columns: 40.5% 1fr;
+    column-gap: 10.5%;
+    align-items: start;
+  }
+
+  .problema__headline {
+    font-size: clamp(2rem, 3.24vw, 4rem);
+  }
+
+  .problema__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 32px;
+  }
+
+  .problema__card-title {
+    font-size: clamp(1.25rem, 1.85vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .problema__card-text {
+    font-size: clamp(1rem, 1.39vw, 1.5rem);
+  }
+}
+
+/* Wide */
+@media (min-width: 1200px) {
+  .problema__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap);
+    flex-direction: unset;
+  }
+
+  .problema__block {
+    padding-top: 2rem;
+    padding-right: 0;
+  }
+
+  .problema__block + .problema__block {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+  }
+}

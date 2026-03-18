@@ -1,0 +1,35 @@
+/* ── Scroll animations ──────────────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.slide-in.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Staggered entrance for cierre questions */
+.cierre__questions .fade-in:nth-child(2) { transition-delay: 0.2s; }
+.cierre__questions .fade-in:nth-child(3) { transition-delay: 0.4s; }

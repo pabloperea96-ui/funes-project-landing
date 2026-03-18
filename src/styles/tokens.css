@@ -1,0 +1,40 @@
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+:root {
+  --color-bg:        #F5F2ED;
+  --color-text:      #1A1A18;
+  --color-accent:    #1A1A18;
+  --color-muted:     #7A7A72;
+  --color-border:    #D9D5CE;
+  --color-input-bg:  #FFFFFF;
+  --color-cierre:    #EDE9E3;
+  --color-highlight: #1A6B4A;
+
+  --text-hero: clamp(2.75rem, 5vw, 4.5rem);
+  --text-xl:   clamp(1.5rem, 3vw, 2.25rem);
+  --text-lg:   1.375rem;
+  --text-base: 1.25rem;
+  --text-sm:   0.875rem;
+
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --space-section:    6rem;
+  --space-section-sm: 4rem;
+  --container-pad:    1.5rem;
+  --grid-gap:         2rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-pad:    2.5rem;
+    --space-section:    8rem;
+    --space-section-sm: 5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --container-pad: 3rem;
+    --space-section: 10rem;
+    --grid-gap:      1.5rem;
+  }
+}

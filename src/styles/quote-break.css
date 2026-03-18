@@ -1,0 +1,50 @@
+/* ── Quote break ────────────────────────────────────────────────────────────── */
+.quote-break {
+  position: relative;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.quote-break__text {
+  padding: 3rem var(--container-pad);
+  font-size: clamp(1.75rem, 4.17vw, 5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  color: var(--color-text);
+  quotes: none;
+  max-width: 22ch;
+}
+
+.quote-break__highlight {
+  color: var(--color-highlight);
+  font-style: normal;
+}
+
+.quote-break__bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 220px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (min-width: 900px) {
+  .quote-break {
+    min-height: 100svh;
+    min-height: 100vh;
+  }
+
+  .quote-break__text {
+    padding: 8rem 3rem 3rem;
+    font-size: max(2.5rem, 4.17vw);
+    max-width: none;
+  }
+
+  .quote-break__bg {
+    min-height: unset;
+  }
+}

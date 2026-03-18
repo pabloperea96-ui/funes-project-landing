@@ -1,5 +1,7 @@
 {
   "name": "funes-project-landing",
+  "version": "1.0.0",
+  "description": "Landing page de waitlist para Funes Project",
   "private": true,
   "scripts": {
     "dev": "vite",

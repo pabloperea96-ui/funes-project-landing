@@ -1,0 +1,18 @@
+/* ── Nav ────────────────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem var(--container-pad);
+  background-color: var(--color-bg);
+}
+
+.nav__brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.006em;
+  line-height: 1.2;
+  color: var(--color-text);
+}

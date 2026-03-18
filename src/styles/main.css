@@ -1,0 +1,16 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   FUNES PROJECT — Landing page styles
+   Mobile-first. No frameworks. Pure CSS.
+───────────────────────────────────────────────────────────────────────────── */
+
+@import './tokens.css';
+@import './reset.css';
+@import './nav.css';
+@import './animations.css';
+@import './button.css';
+@import './hero.css';
+@import './quote-break.css';
+@import './problema.css';
+@import './idea.css';
+@import './cierre.css';
+@import './form.css';

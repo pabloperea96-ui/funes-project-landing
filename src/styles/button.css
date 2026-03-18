@@ -1,0 +1,52 @@
+/* ── Button ─────────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  font-family: var(--font);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-decoration: none;
+  padding: 1rem 2.25rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 16px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: transparent;
+  color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  outline: none;
+}
+
+.btn--full {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.btn--hero {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 2px 3px 4px rgba(0, 0, 0, 0.25);
+  align-self: flex-start;
+}
+
+.btn--hero:hover,
+.btn--hero:focus-visible {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  opacity: 0.8;
+}
