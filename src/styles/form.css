@@ -176,7 +176,8 @@
   color: var(--color-muted);
 }
 
-.form__feedback--error { color: #C0392B; }
+.form__feedback--error   { color: #C0392B; }
+.form__feedback--success { color: var(--color-text); }
 
 /* ── Checkbox ───────────────────────────────────────────────────────────────── */
 .form__checkbox-label {
