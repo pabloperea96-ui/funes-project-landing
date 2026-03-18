@@ -5,14 +5,8 @@
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY
 
-/* ── Phone validation ──────────────────────────────────────────────────────── */
-function isValidPhone(value) {
-  const cleaned = value.replace(/[\s\-\(\)\.]/g, '')
-  return /^\+?[0-9]{7,15}$/.test(cleaned)
-}
-
 /* ── Supabase insert ───────────────────────────────────────────────────────── */
-async function submitToWaitlist(whatsapp) {
+async function submitToWaitlist(data) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
     method: 'POST',
     headers: {
@@ -21,34 +15,70 @@ async function submitToWaitlist(whatsapp) {
       'Authorization': `Bearer ${SUPABASE_KEY}`,
       'Prefer': 'return=minimal',
     },
-    body: JSON.stringify({ whatsapp, source: 'landing' }),
+    body: JSON.stringify(data),
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
 }
 
+/* ── Helpers ───────────────────────────────────────────────────────────────── */
+function val(id) {
+  return document.getElementById(id)?.value.trim() ?? ''
+}
+
+function showError(message, focusId) {
+  const fb = document.getElementById('form-feedback')
+  fb.textContent = message
+  fb.className = 'form__feedback form__feedback--error'
+  if (focusId) document.getElementById(focusId)?.focus()
+}
+
 /* ── Form handler ──────────────────────────────────────────────────────────── */
-const form     = document.getElementById('waitlist-form')
-const feedback = document.getElementById('form-feedback')
-const input    = document.getElementById('whatsapp')
+const form = document.getElementById('waitlist-form')
+
+let formDirty = false
+form.addEventListener('input', () => { formDirty = true }, { once: false })
+window.addEventListener('beforeunload', (e) => {
+  if (formDirty) e.preventDefault()
+})
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
+  formDirty = false
 
-  const value = input.value.trim()
+  const feedback = document.getElementById('form-feedback')
   feedback.textContent = ''
   feedback.className = 'form__feedback'
 
-  if (!value) {
-    feedback.textContent = 'Ingresa tu número de WhatsApp.'
-    feedback.classList.add('form__feedback--error')
-    input.focus()
+  const nombre      = val('nombre')
+  const apellido    = val('apellido')
+  const countryCode = val('country-code')
+  const rawNumber   = val('whatsapp-number').replace(/[\s\-\(\)\.]/g, '')
+  const email       = val('email')
+  const libros      = val('libros')
+  const consentimiento = document.getElementById('consentimiento').checked
+
+  if (!nombre) {
+    showError('Ingresa tu nombre.', 'nombre')
     return
   }
 
-  if (!isValidPhone(value)) {
-    feedback.textContent = 'El número no parece válido. Ejemplo: +57 300 000 0000'
-    feedback.classList.add('form__feedback--error')
-    input.focus()
+  if (!apellido) {
+    showError('Ingresa tu apellido.', 'apellido')
+    return
+  }
+
+  if (!rawNumber || rawNumber.length < 7) {
+    showError('Ingresa un número de WhatsApp válido (mínimo 7 dígitos).', 'whatsapp-number')
+    return
+  }
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showError('Ingresa un email válido.', 'email')
+    return
+  }
+
+  if (!consentimiento) {
+    showError('Acepta el uso de tus datos para continuar.', 'consentimiento')
     return
   }
 
@@ -57,11 +87,19 @@ form.addEventListener('submit', async (e) => {
   btn.textContent = 'Enviando...'
 
   try {
-    await submitToWaitlist(value)
+    await submitToWaitlist({
+      nombre,
+      apellido,
+      whatsapp:        countryCode + rawNumber,
+      email,
+      'libros_al_año': libros || null,
+      consentimiento:   true,
+      source:           'landing',
+    })
 
     const formWrap = document.getElementById('form')
-    const cta = formWrap.querySelector('.form__cta')
-    const formEl = formWrap.querySelector('form')
+    const cta      = formWrap.querySelector('.form__cta')
+    const formEl   = formWrap.querySelector('form')
 
     if (cta) cta.remove()
     formEl.innerHTML = `
@@ -72,11 +110,40 @@ form.addEventListener('submit', async (e) => {
     `
   } catch (err) {
     feedback.textContent = 'No se guardó. Intenta de nuevo.'
-    feedback.classList.add('form__feedback--error')
+    feedback.className = 'form__feedback form__feedback--error'
     btn.disabled = false
     btn.textContent = 'Quiero participar'
   }
 })
+
+/* ── Country selector: short display when closed, full text when open ──────── */
+const countrySelect = document.getElementById('country-code')
+
+// Store long text and compute short text for every option
+Array.from(countrySelect.options).forEach(opt => {
+  const chars = [...opt.text.trim()]
+  const flag  = chars[0] + chars[1]          // flag emoji = 2 code points
+  opt.dataset.long  = opt.text
+  opt.dataset.short = flag + ' ' + opt.value
+  opt.text = opt.dataset.short               // start collapsed
+})
+
+// Expand to full text before the picker opens
+countrySelect.addEventListener('mousedown', expand)
+countrySelect.addEventListener('touchstart', expand, { passive: true })
+countrySelect.addEventListener('keydown', expand)
+
+// Collapse back after selection or dismiss
+countrySelect.addEventListener('change', collapse)
+countrySelect.addEventListener('blur',   collapse)
+
+function expand() {
+  Array.from(countrySelect.options).forEach(opt => { opt.text = opt.dataset.long })
+}
+
+function collapse() {
+  Array.from(countrySelect.options).forEach(opt => { opt.text = opt.dataset.short })
+}
 
 /* ── Scroll animations ─────────────────────────────────────────────────────── */
 if ('IntersectionObserver' in window) {
@@ -105,13 +172,13 @@ if (counterEl && 'IntersectionObserver' in window) {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const target = 847
+          const target   = 847
           const duration = 1400
-          const start = performance.now()
+          const start    = performance.now()
 
           const tick = (now) => {
             const progress = Math.min((now - start) / duration, 1)
-            const eased = 1 - Math.pow(1 - progress, 3)
+            const eased    = 1 - Math.pow(1 - progress, 3)
             counterEl.textContent = Math.round(eased * target)
             if (progress < 1) requestAnimationFrame(tick)
           }
