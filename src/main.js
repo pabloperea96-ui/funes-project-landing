@@ -17,7 +17,11 @@ async function submitToWaitlist(data) {
     },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  if (!res.ok) {
+    const err = new Error(`HTTP ${res.status}`)
+    if (res.status === 409) err.duplicate = true
+    throw err
+  }
 }
 
 /* ── Helpers ────────────────────────────────────────────────────────────────── */
@@ -109,8 +113,12 @@ form.addEventListener('submit', async (e) => {
       </div>
     `
   } catch (err) {
-    feedback.textContent = 'No se guardó. Intenta de nuevo.'
-    feedback.className = 'form__feedback form__feedback--error'
+    feedback.textContent = err.duplicate
+      ? 'Ya te registraste y pronto te contactaremos.'
+      : 'No se guardó. Intenta de nuevo.'
+    feedback.className = err.duplicate
+      ? 'form__feedback form__feedback--success'
+      : 'form__feedback form__feedback--error'
     btn.disabled = false
     btn.textContent = 'Quiero participar'
   }
