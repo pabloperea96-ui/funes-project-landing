@@ -6,3 +6,9 @@
 # Vite / build output
 node_modules/
 dist/
+
+# Claude Code / agent skills
+.agent/
+.agents/
+.claude/
+SKILL.md
