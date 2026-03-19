@@ -108,7 +108,7 @@ form.addEventListener('submit', async (e) => {
     if (cta) cta.remove()
     formEl.innerHTML = `
       <div class="form__success">
-        <p>¡Listo! Te contactaremos esta semana.</p>
+        <p>¡Listo! Pronto te contactaremos.</p>
         <p>Mientras tanto, seguro que conoces a otro lector en problemas...</p>
       </div>
     `
