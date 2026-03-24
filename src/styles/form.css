@@ -244,6 +244,17 @@
   text-underline-offset: 2px;
 }
 
+/* ── Submit wrapper ─────────────────────────────────────────────────────────── */
+.form__submit-wrap {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .form__submit-wrap {
+    width: calc(50% - 1.5rem);
+  }
+}
+
 /* ── Success / underage states ──────────────────────────────────────────────── */
 .form__underage {
   padding: 1.5rem 0;

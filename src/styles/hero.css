@@ -131,7 +131,7 @@
     padding: 0 3rem 3rem var(--container-pad);
   }
 
-  .btn--hero {
+  .hero .btn--hero {
     font-size: 1.25rem;
     padding: 0.75rem 2rem;
   }

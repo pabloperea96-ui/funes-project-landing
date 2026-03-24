@@ -2,6 +2,8 @@
    FUNES PROJECT — main.js
 ───────────────────────────────────────────────────────────────────────────── */
 
+import './components/FunesButton.js'
+
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY
 
