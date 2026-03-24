@@ -1,6 +1,11 @@
+/* ── Button component ────────────────────────────────────────────────────────── */
+funes-button { display: contents; }
+
 /* ── Button ─────────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-block;
+  -webkit-appearance: none;
+  appearance: none;
   background-color: var(--color-accent);
   color: #FFFFFF;
   font-family: var(--font);
@@ -11,7 +16,7 @@
   text-decoration: none;
   padding: 1rem 2.25rem;
   border: 2px solid var(--color-accent);
-  border-radius: 16px;
+  border-radius: var(--btn-radius);
   cursor: pointer;
   touch-action: manipulation;
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -33,6 +38,7 @@
   display: block;
   width: 100%;
   text-align: center;
+  overflow: hidden;
 }
 
 .btn--hero {

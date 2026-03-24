@@ -21,6 +21,7 @@
   --space-section-sm: 4rem;
   --container-pad:    1.5rem;
   --grid-gap:         2rem;
+  --btn-radius:       16px;
 }
 
 @media (min-width: 768px) {
